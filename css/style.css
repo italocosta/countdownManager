@@ -1,0 +1,10 @@
+@font-face{
+ font-family:'digital-7';
+ src: url('fonts/digital-7.ttf');
+}
+
+#container{
+	font-family: digital-7;
+	text-align: center;
+  	font-size: 60px;
+}

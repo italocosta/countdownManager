@@ -1,47 +1,117 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-<style>
-p {
-  text-align: center;
-  font-size: 60px;
-}
-</style>
-</head>
-<body>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+  <body>
 
-<p id="demo"></p>
+    <div id="container">
+      <span id="h"></span>
+      <span id ="m"></span>
+      <span id ="s"></span>
+    </div>
+    <div id="buttons">
+      <button onclick="start()">Start</button>
+      <input type="number" id="hor" value="0">
+      <input type="number" id="min" value="0">
+      <input type="number" id="seg" value="0"><br/><br/>
+      <button onclick="restart()">Play</button>
+      <button onclick="pause()">Pause</button>
+      <button onclick="stop()">Stop</button>
+    </div>
 
-<script>
-// Set the date we're counting down to
-var countDownDate = new Date(2017,09,13,22,45,00).getTime();
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.js"
+    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+    crossorigin="anonymous"></script>
 
-// Update the count down every 1 second
-var x = setInterval(function() {
+    <script>
+      var countDownDate;
+      var sHora = $('#h');
+      var sMinuto = $('#m');
+      var sSegundos = $('#s');
+      var iHora = $('#hor');
+      var iMinuto = $('#min');
+      var iSegundos = $('#seg');
 
-    // Get todays date and time
-    var now = new Date().getTime();
-    
-    // Find the distance between now an the count down date
-    var distance = countDownDate - now;
-    
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-    // Output the result in an element with id="demo"
-    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-    + minutes + "m " + seconds + "s ";
-    
-    // If the count down is over, write some text 
-    if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
-    }
-}, 1000);
-</script>
+      getValueSpan = function(span){
+        return parseInt(span.html().replace(':',''));
+      }
 
-</body>
+      getValueInput = function(input){
+        return parseInt(input.val().replace(':',''));
+      }
+
+      param = function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        var strHours = '',strMin = '',strSec= '';
+
+        if(hours > 0){
+          if(hours < 9){
+            strHours += '0';
+          }
+          strHours+=hours+":";
+          sHora.html(strHours);
+        }
+        if(minutes > 0){
+          if(minutes < 9){
+            strMin += '0';
+          }
+          strMin+=minutes+":";
+          sMinuto.html(strMin);
+        }
+        if(seconds > 0){
+          if(seconds < 9){
+            strSec += '0';
+          }
+          strSec+=seconds;
+          sSegundos.html(strSec);
+        }
+        
+        if (distance < 0) {
+          stopService();
+        }
+      }
+
+      startService = function(){
+        service = setInterval(param, 1000);
+      }
+      stopService = function(){
+        clearInterval(service);
+        sHora.html('00:');
+        sMinuto.html('00:');
+        sSegundos.html('00');
+      }
+
+
+
+      start = function(){
+        var now = new Date();
+        now.setHours(now.getHours()+getValueInput(iHora));
+        now.setMinutes(now.getMinutes()+getValueInput(iMinuto));
+        now.setSeconds(now.getSeconds()+getValueInput(iSegundos));
+        countDownDate = now;
+        startService();
+      }
+      restart = function(){
+        var now = new Date();
+        now.setHours(now.getHours()+getValueSpan(sHora));
+        now.setMinutes(now.getMinutes()+getValueSpan(sMinuto));
+        now.setSeconds(now.getSeconds()+getValueSpan(sSegundos));
+        countDownDate = now;
+        startService();
+      }
+      pause = function(){
+        clearInterval(service);
+      }
+      stop = function(){
+        stopService();
+      }
+    </script>
+
+  </body>
 </html>
