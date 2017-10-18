@@ -1,117 +1,43 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
   </head>
   <body>
 
     <div id="container">
-      <span id="h"></span>
-      <span id ="m"></span>
-      <span id ="s"></span>
+      <div id="time">
+        <span id="h"></span>
+        <span id ="m"></span>
+        <span id ="s"></span>
+      </div>
+      <div id="message">
+      </div>
+	  <div id="clock"></div>
     </div>
     <div id="buttons">
       <button onclick="start()">Start</button>
       <input type="number" id="hor" value="0">
       <input type="number" id="min" value="0">
       <input type="number" id="seg" value="0"><br/><br/>
-      <button onclick="restart()">Play</button>
-      <button onclick="pause()">Pause</button>
-      <button onclick="stop()">Stop</button>
+      <button id="play">Play</button>
+      <button id="pause">Pause</button>
+      <button id="stop">Stop</button>
     </div>
-
-    <script
-    src="https://code.jquery.com/jquery-3.2.1.js"
-    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-    crossorigin="anonymous"></script>
-
-    <script>
-      var countDownDate;
-      var sHora = $('#h');
-      var sMinuto = $('#m');
-      var sSegundos = $('#s');
-      var iHora = $('#hor');
-      var iMinuto = $('#min');
-      var iSegundos = $('#seg');
-
-      getValueSpan = function(span){
-        return parseInt(span.html().replace(':',''));
-      }
-
-      getValueInput = function(input){
-        return parseInt(input.val().replace(':',''));
-      }
-
-      param = function() {
-        var now = new Date().getTime();
-        var distance = countDownDate - now;
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        var strHours = '',strMin = '',strSec= '';
-
-        if(hours > 0){
-          if(hours < 9){
-            strHours += '0';
-          }
-          strHours+=hours+":";
-          sHora.html(strHours);
-        }
-        if(minutes > 0){
-          if(minutes < 9){
-            strMin += '0';
-          }
-          strMin+=minutes+":";
-          sMinuto.html(strMin);
-        }
-        if(seconds > 0){
-          if(seconds < 9){
-            strSec += '0';
-          }
-          strSec+=seconds;
-          sSegundos.html(strSec);
-        }
-        
-        if (distance < 0) {
-          stopService();
-        }
-      }
-
-      startService = function(){
-        service = setInterval(param, 1000);
-      }
-      stopService = function(){
-        clearInterval(service);
-        sHora.html('00:');
-        sMinuto.html('00:');
-        sSegundos.html('00');
-      }
+	
+	
 
 
-
-      start = function(){
-        var now = new Date();
-        now.setHours(now.getHours()+getValueInput(iHora));
-        now.setMinutes(now.getMinutes()+getValueInput(iMinuto));
-        now.setSeconds(now.getSeconds()+getValueInput(iSegundos));
-        countDownDate = now;
-        startService();
-      }
-      restart = function(){
-        var now = new Date();
-        now.setHours(now.getHours()+getValueSpan(sHora));
-        now.setMinutes(now.getMinutes()+getValueSpan(sMinuto));
-        now.setSeconds(now.getSeconds()+getValueSpan(sSegundos));
-        countDownDate = now;
-        startService();
-      }
-      pause = function(){
-        clearInterval(service);
-      }
-      stop = function(){
-        stopService();
-      }
-    </script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
+	<script src="/js/jquery.countdown.js"></script>
+    <script type="text/javascript" src="/js/painel.js"></script>
+	
+	<script type="text/javascript">
+	  $('#clock').countdown('2017/10/18 03:00:00', function(event) {
+		$(this).html(event.strftime('%H:%M:%S'));
+	  });
+	</script>
 
   </body>
 </html>

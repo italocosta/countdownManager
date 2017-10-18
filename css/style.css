@@ -1,6 +1,6 @@
 @font-face{
  font-family:'digital-7';
- src: url('fonts/digital-7.ttf');
+ src: url('/css/fonts/digital-7.ttf');
 }
 
 #container{
