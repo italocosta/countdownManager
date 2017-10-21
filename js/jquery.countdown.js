@@ -158,6 +158,11 @@
         },
         pause: function() {
             this.stop();
+            this.diferenceDate = this.finalDate.getTime() - new Date().getTime();
+        },
+        restart: function() {
+            this.finalDate = new Date(new Date().getTime() + this.diferenceDate);
+            this.resume();
         },
         resume: function() {
             this.start();

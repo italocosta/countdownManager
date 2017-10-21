@@ -16,10 +16,10 @@
 	  <div id="clock"></div>
     </div>
     <div id="buttons">
-      <button onclick="start()">Start</button>
-      <input type="number" id="hor" value="0">
-      <input type="number" id="min" value="0">
-      <input type="number" id="seg" value="0"><br/><br/>
+      <button id="start">Start</button>
+      <input type="number" id="hor" value="0" min="0" max="10">
+      <input type="number" id="min" value="0" min="0" max="59">
+      <input type="number" id="seg" value="0" min="0" max="59"><br/><br/>
       <button id="play">Play</button>
       <button id="pause">Pause</button>
       <button id="stop">Stop</button>
@@ -34,9 +34,12 @@
     <script type="text/javascript" src="/js/painel.js"></script>
 	
 	<script type="text/javascript">
-	  $('#clock').countdown('2017/10/18 03:00:00', function(event) {
-		$(this).html(event.strftime('%H:%M:%S'));
-	  });
+    var h = $('#hor').val();
+    var m = $('#min').val();
+    var s = $('#seg').val();
+	  $('#clock').countdown(addTime(h,m,s), function(event) {
+  		$(this).html(event.strftime('%H:%M:%S'));
+  	});
 	</script>
 
   </body>
