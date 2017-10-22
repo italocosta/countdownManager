@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <div id="buttons">
+      <button id="start">Start</button>
+      <input type="number" id="hor" value="0" min="0" max="10">
+      <input type="number" id="min" value="0" min="0" max="59">
+      <input type="number" id="seg" value="0" min="0" max="59"><br/><br/>
+      <button id="restart">Play</button>
+      <button id="pause">Pause</button>
+      <button id="stop">Stop</button>
+    </div>
+	<div>
+		<label>Message to the preacher:
+		<textarea id="msg"></textarea>
+		<button id="send">Send</button>
+	</div>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
+    <script type="text/javascript" src="/js/manager.js"></script>
+  </body>
+</html>

@@ -147,6 +147,7 @@
         stop: function() {
             clearInterval(this.interval);
             this.interval = null;
+			this.finalDate = new Date();
             this.dispatchEvent("stoped");
         },
         toggle: function() {
@@ -157,11 +158,13 @@
             }
         },
         pause: function() {
-            this.stop();
+            clearInterval(this.interval);
+            this.interval = null;
             this.diferenceDate = this.finalDate.getTime() - new Date().getTime();
         },
         restart: function() {
             this.finalDate = new Date(new Date().getTime() + this.diferenceDate);
+			this.diferenceDate = 0;
             this.resume();
         },
         resume: function() {

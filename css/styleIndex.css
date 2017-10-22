@@ -1,0 +1,60 @@
+ html, body {
+	height: 100%;
+	margin: 0;
+}
+
+@font-face{
+ font-family:'digital-7';
+ src: url('/css/fonts/digital-7.ttf');
+}
+
+#container{
+	background-color: #000;
+	min-height: 100%; 
+}
+
+#top {
+	position: absolute;
+	right: 0;
+	top: 0;
+	left: 0;	
+	background-color: rgba(65,105,225,0.1);
+	text-align: center;
+}
+
+#top img{
+    max-height:100px;
+    width: auto;
+    height: auto;
+}
+
+#footer {
+	position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-size: 140px;
+	text-transform: uppercase;
+    color: #fff400;
+    padding: 1rem;
+    height: auto;
+    background-color: rgba(65,105,225,0.1);
+    text-align: center;
+}
+
+#clock {
+	font-family: digital-7;
+	text-align: center;
+  	font-size: 400px;
+	color: #fff400;
+	position:absolute;
+    top:50%;
+    left:50%;
+    margin-top:-240px;
+    margin-left:-640px;
+}
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}

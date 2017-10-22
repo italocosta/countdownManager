@@ -1,46 +1,25 @@
 <!DOCTYPE HTML>
 <html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-  </head>
-  <body>
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/styleIndex.css">
+	</head>
+	<body>
+		<div id="container">
+			<div id="top">
+				<img src="/img/logo.png" />
+			</div>
+			<div id="clock"></div>
+			</div>
+			<div id="footer">
+				<div id="message" class='marquee'>					
+				</div>
+			</div>
+		</div>
 
-    <div id="container">
-      <div id="time">
-        <span id="h"></span>
-        <span id ="m"></span>
-        <span id ="s"></span>
-      </div>
-      <div id="message">
-      </div>
-	  <div id="clock"></div>
-    </div>
-    <div id="buttons">
-      <button id="start">Start</button>
-      <input type="number" id="hor" value="0" min="0" max="10">
-      <input type="number" id="min" value="0" min="0" max="59">
-      <input type="number" id="seg" value="0" min="0" max="59"><br/><br/>
-      <button id="play">Play</button>
-      <button id="pause">Pause</button>
-      <button id="stop">Stop</button>
-    </div>
-	
-	
-
-
-    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
-	<script src="/js/jquery.countdown.js"></script>
-    <script type="text/javascript" src="/js/painel.js"></script>
-	
-	<script type="text/javascript">
-    var h = $('#hor').val();
-    var m = $('#min').val();
-    var s = $('#seg').val();
-	  $('#clock').countdown(addTime(h,m,s), function(event) {
-  		$(this).html(event.strftime('%H:%M:%S'));
-  	});
-	</script>
-
-  </body>
+		<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
+		<script src="/js/jquery.countdown.js"></script>
+		<script src="/js/jquery.marquee.js"></script>
+		<script type="text/javascript" src="/js/index.js"></script>
+	</body>
 </html>
