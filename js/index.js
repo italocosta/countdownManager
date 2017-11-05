@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	
-    var socket = io.connect("http://192.168.0.12:3000");
+    var socket = io.connect("https://countdown-manager.herokuapp.com:3000");
 	var $clock = $('#clock');
 	var $message = $('#message');
 		
