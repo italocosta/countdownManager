@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var socket = io.connect("http://countdown-manager.herokuapp.com:3000");
+    var socket = io();
 	var $clock = $('#clock');
 	var h = $('#hor').val();
 	var m = $('#min').val();
