@@ -112,7 +112,7 @@
             return plural;
         }
     }
-    var Countdown = function(el, finalDate, options) {
+    var Countdown = function(el, finalDate, options, functionFinish) {
         this.el = el;
         this.$el = $(el);
         this.interval = null;
@@ -125,7 +125,7 @@
             if (typeof options === "function") {
                 this.$el.on("update.countdown", options);
                 this.$el.on("stoped.countdown", options);
-                this.$el.on("finish.countdown", options);
+                this.$el.on("finish.countdown", functionFinish);
             } else {
                 this.options = $.extend({}, defaultOptions, options);
             }
@@ -236,7 +236,7 @@
                     $.error("Method %s does not exist on jQuery.countdown".replace(/\%s/gi, method));
                 }
             } else {
-                new Countdown(this, argumentsArray[0], argumentsArray[1]);
+                new Countdown(this, argumentsArray[0], argumentsArray[1],argumentsArray[2]);
             }
         });
     };
