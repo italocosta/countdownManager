@@ -27,6 +27,7 @@ $(document).ready(function(){
 	});
 	socket.on('stop', function(){
 		$clock.countdown(new Date());
+		showMessage('');
 	});
 	socket.on('message', showMessage );
 });
